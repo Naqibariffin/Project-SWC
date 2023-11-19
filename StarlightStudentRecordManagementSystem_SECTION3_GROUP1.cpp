@@ -46,7 +46,7 @@ int main()
 	
 	//declare
 	//	numStudent of number of existing student records
-	int studentID[maxStudent], attendance[maxStudent], numStudent=0, currentStudent=0;
+	int studentID[maxStudent], attendance[maxStudent], numStudent=0, currentStudent=0, tempStudent;
 	string studentName[maxStudent];
 	double scores[maxStudent], averagescores;
 	int choice;
@@ -60,7 +60,7 @@ int main()
 		if(choice == 1) {	
 		//if no student record exist yet set number student to 50 because at least 50 student record is the requirement
 			if (numStudent == 0){
-				numStudent = 50;
+				numStudent =50;
 			} 
 			else { //if student record already exist just ask user how many more student they want to add or append
 				//ask user how many student they want to add
@@ -70,12 +70,13 @@ int main()
 					clearInputError();
 					cout<<"Invalid input. Please enter Integer only: ";
 					cin>>currentStudent;
-				}		
+				}
+				tempStudent = currentStudent;  // to temporarily hold add nuumStudent
 				currentStudent = numStudent;  // currentStudent to store prev num of student before adding the new number of student
-				numStudent = numStudent + currentStudent;	//add numStudent and currentStudent input to get the overall student record size 
+				numStudent = numStudent + tempStudent;	//add numStudent and currentStudent input to get the overall student record size 
 			}		
 			//Nur Farhana's part - input from user				
-			for (int i = currentStudent; i < numStudent; ++i) {
+			for (int i = currentStudent; i < numStudent; i++) {
 			    inputStudentData(studentID, studentName, scores, attendance, numStudent, i);
 			}
 		}
@@ -289,7 +290,7 @@ void displayStudentRecords(int numStudent, int studentID[], string studentName[]
 	cout<<"\n\n";
 	//display average student that was calculated by function calculateAverageScores()
 	cout<<"------------------------------------------------------------------------------------------------------------------- \n";
-	cout<<"Average scores for all students in the array scores is: "<< average<<"%";
+	cout<<"Average scores for all students in the array scores is: "<< average;
 	cout<<"\n-------------------------------------------------------------------------------------------------------------------";
 	cout<<"\n\n";
 	
@@ -334,7 +335,7 @@ void displayStudentRecords(int numStudent, int studentID[], string studentName[]
 				cout<<"\nStudent ID  : "<<studentID[i];
 				cout<<"\nName        : "<<studentName[i];
 				cout<<"\nScore       : "<<scores[i];
-				cout<<"\nAttendance  : "<<attendance[i];
+				cout<<"\nAttendance  : "<<attendance[i]<<" %";
 				cout<<"\n------------------------------------------------";
 				//change found status to true to stop the searching process 
 				found = true;	
